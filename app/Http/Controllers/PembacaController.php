@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembaca;
-use App\Models\Buku;
+use App\Models\nis;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PembacaExport;
 
 class PembacaController extends Controller
 {
+
+    public function exportExcel()
+    {
+        return Excel::download(new PembacaExport, 'pembaca.xlsx');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         if (empty($request->search_pembaca)) {
-            $pembaca = Pembaca::orderBy('nama', 'ASC')->limit(6)->offset(0)->get();
+            $pembaca = Pembaca::orderBy('nama', 'ASC')->limit(6)->get();
         } else {
             $pembaca = Pembaca::where('nama', 'LIKE', '%' . $request->search_pembaca . '%')
                         ->orderBy('nama', 'ASC')
                         ->limit(6)
-                        ->offset(0)
                         ->get();
         }
 
@@ -43,16 +49,16 @@ class PembacaController extends Controller
         $request->validate([
             // Validasi ini memastikan bahwa beberapa field harus diisi
             'nama' => 'required',
-            'buku' => 'required',
-            'genre' => 'required|in:romance,horor,comedy'
+            'nis' => 'required',
+            'status' => 'required|in:pelajar,mahasiswa,pekerja'
         ]);
 
 
         Pembaca::create([
         //menyimpan data pengguna baru ke dalam tabel users pada database.
             'nama' => $request->nama, //Nama pengguna yang diambil dari request.
-            'buku' => $request->buku,
-            'genre' => $request->genre,
+            'nis' => $request->nis,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('pembaca.data')->with('success', 'Berhasil menambahkan data pembaca');
@@ -71,7 +77,12 @@ class PembacaController extends Controller
      */
     public function edit(string $id)
     {
-        $pembaca = Pembaca::where('id', $id)->first();// mengembalikan hasil pertama dari pencarian
+        $pembaca = Pembaca::find($id);
+
+        if (!$pembaca) {
+            return redirect()->route('pembaca.index')->withErrors('Pembaca not found');
+        }
+
         return view('pembaca.edit', compact('pembaca'));
     }
 
@@ -82,16 +93,16 @@ class PembacaController extends Controller
     {
         $request->validate([
             'nama' => 'required|max:100',// wajib di isi maksimal 100 karakter
-            'buku' => 'required',
-            'genre' => 'required',
+            'nis' => 'required',
+            'status' => 'required',
         ]);
 
         $pembaca = Pembaca::findOrFail($id);
 
         // update field yang diisi
         $pembaca->nama = $request->nama;
-        $pembaca->buku = $request->buku;
-        $pembaca->genre = $request->genre;
+        $pembaca->nis = $request->nis;
+        $pembaca->status = $request->status;
 
         $pembaca->save();
 

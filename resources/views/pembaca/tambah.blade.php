@@ -25,20 +25,20 @@
         </div>
 
         <div class="mb-3 row">
-            <label for="buku" class="col-sm-2 col-form-label">Buku :</label>
+            <label for="nis" class="col-sm-2 col-form-label">NIS :</label>
             <div class="col-sm-10">
-                <input type="buku" class="form-control" id="buku" name="buku" value="{{ old('buku') }}">
+                <input type="nis" class="form-control" id="nis" name="nis" value="{{ old('nis') }}">
             </div>
         </div>
 
         <div class="mb-3 row">
-            <label for="genre" class="col-sm-2 col-form-label">Genre :</label>
+            <label for="status" class="col-sm-2 col-form-label">Status :</label>
             <div class="col-sm-10">
-                <select class="form-select" id="genre" name="genre">
+                <select class="form-select" id="status" name="status">
                     <option selected disabled hidden>Pilih</option>
-                    <option value="romance" {{ old('genre') == 'romance' ? 'selected' : '' }}>romance</option>
-                    <option value="horor" {{ old('genre') == 'horor' ? 'selected' : '' }}>horor</option>
-                    <option value="comedy" {{ old('genre') == 'comedy' ? 'selected' : '' }}>comedy</option>
+                    <option value="pelajar" {{ old('status') == 'pelajar' ? 'selected' : '' }}>Pelajar</option>
+                    <option value="mahasiswa" {{ old('status') == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa</option>
+                    <option value="pekerja" {{ old('status') == 'pekerja' ? 'selected' : '' }}>Pekerja</option>
                 </select>
             </div>
         </div>

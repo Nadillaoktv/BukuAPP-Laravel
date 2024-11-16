@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-<form action="{{ route('pembaca.edit.formulir', $pembaca['id'])}}" method="POST" class="card p-5 m-5">
+<form action="{{ route('pembaca.edit', $pembaca['id'])}}" method="POST" class="card p-5 m-5">
 
     @csrf
     @method('PATCH')
@@ -28,20 +28,20 @@
     </div>
 
     <div class="mb-3 row">
-        <label for="buku" class="col-sm-2 col-form-label">Buku:</label>
+        <label for="nis" class="col-sm-2 col-form-label">nis:</label>
         <div class="col-sm-10">
-            <input type="buku" class="form-control" id="buku" name="buku" value="{{ old('buku') }}">
+            <input type="nis" class="form-control" id="nis" name="nis" value="{{ old('nis') }}">
         </div>
     </div>
 
     <div class="mb-3 row">
-        <label for="genre" class="col-sm-2 col-form-label">Genre :</label>
+        <label for="status" class="col-sm-2 col-form-label">status :</label>
         <div class="col-sm-10">
-            <select class="form-select" id="genre" name="genre">
+            <select class="form-select" id="status" name="status">
                 <option selected disabled hidden>Pilih</option>
-                <option value="romance" {{ old('genre') == 'romance' ? 'selected' : '' }}>romance</option>
-                <option value="horor" {{ old('genre') == 'horor' ? 'selected' : '' }}>horor</option>
-                <option value="comedy" {{ old('genre') == 'comedy' ? 'selected' : '' }}>comedy</option>
+                <option value="Pelajar" {{ old('status') == 'pelajar' ? 'selected' : '' }}>Pelajar</option>
+                <option value="Mahasiswa" {{ old('status') == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa</option>
+                <option value="pekerja" {{ old('status') == 'pekerja' ? 'selected' : '' }}>pekerja</option>
             </select>
         </div>
     </div>

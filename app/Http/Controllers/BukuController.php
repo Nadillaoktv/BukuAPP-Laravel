@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BukuExport;
 
 class BukuController extends Controller
 {
+
+    public function exportExcel()
+    {
+        return Excel::download(new BukuExport, 'buku.xlsx');
+    }
+
     public function index(Request $request)
     {
         if (empty($request->search_buku)) {

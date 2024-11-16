@@ -10,7 +10,11 @@
                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
             @endif
         </div>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between ">
+            <div class="d-flex">
+                <a href="{{ route('buku.tambah_buku') }}" class="btn btn-primary me-3">Tambah Akun</a>
+                <a href="{{ route('buku.export') }}" class="btn btn-success">Export Excel</a>
+            </div>
             <form action="{{ route('buku.data') }}" role="search" class="d-flex" method="GET">
                 <input type="text" class="form-control me-2" name="search_buku" placeholder="Search Data" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>

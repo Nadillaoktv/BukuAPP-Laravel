@@ -10,8 +10,11 @@
                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
             @endif
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="{{ route('pembaca.tambah') }}" class="btn btn-primary me-3">Tambah Akun</a>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <a href="{{ route('pembaca.tambah') }}" class="btn btn-primary me-3">Tambah Akun</a>
+                <a href="{{ route('pembaca.export') }}" class="btn btn-success">Export Excel</a>
+            </div>
             <form action="{{ route('pembaca.data') }}" role="search" class="d-flex" method="GET">
                 <input type="text" class="form-control me-2" name="search_pembaca" placeholder="Search Data" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -22,8 +25,8 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Buku</th>
-                    <th>Genre</th>
+                    <th>Nis</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -37,8 +40,8 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->buku }}</td>
-                            <td>{{ $item->genre }}</td>
+                            <td>{{ $item->nis }}</td>
+                            <td>{{ $item->status }}</td>
                             <td class="d-flex">
                                 <a href="{{ route('pembaca.edit', $item->id) }}" class="btn btn-primary me-2">Edit</a>
                                 <button class="btn btn-danger btn-sm" onclick="showModal('{{ $item->id }}', '{{ $item->nama }}')">Hapus</button>

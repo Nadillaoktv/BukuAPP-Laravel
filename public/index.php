@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// Menambah batas waktu eksekusi
+ini_set('max_execution_time', 300); // Mengatur batas waktu eksekusi menjadi 300 detik
+
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance

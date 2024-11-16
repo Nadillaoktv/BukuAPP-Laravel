@@ -13,8 +13,8 @@ class Pembaca extends Model
 
     protected $fillable = [
         'nama',
-        'buku',
-        'genre',
+        'nis',
+        'status',
     ];
 
 }
