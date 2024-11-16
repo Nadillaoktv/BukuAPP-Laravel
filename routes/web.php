@@ -33,7 +33,7 @@ Route::prefix('/buku')->name('buku.')->group(function(){
     Route::delete('/hapus/{id}', [BukuController::class, 'destroy'])->name('hapus');
     Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('edit');
     Route::patch('/{id}', [BukuController::class, 'update'])->name('edit.formulir');
-    Route::get('/export-excel', [BukuController::class, 'exportExcel'])->name('excel');
+    Route::get('/buku/export', [BukuController::class, 'export'])->name('buku.export');
 
 });
 
